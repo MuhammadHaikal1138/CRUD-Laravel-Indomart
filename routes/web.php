@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\Controller;
 use App\Http\Controllers\DrinkController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FoodController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,7 +18,17 @@ use App\Http\Controllers\FoodController;
 */
 
 Route::get('/', function () {
-    return view('pages.home');
+    return view('pages.login');
+})->name('show.login');
+
+Route::prefix('/login')->group(function() {
+    Route::get('/Register', [UserController::class, 'create'])->name('create.user');
+    Route::post('/', [UserController::class, 'store'])->name('store.user');
+    Route::post('/login', [UserController::class, 'login'])->name('login');
+});
+
+Route::prefix('/pages')->group(function(){
+    Route::get('/Dashboard', [Controller::class, 'landing'])->name('dashboard');
 });
 
 Route::prefix('/food')->name('food.')->group(function () {

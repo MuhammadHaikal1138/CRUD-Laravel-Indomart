@@ -11,6 +11,7 @@
         }
         .sidebar {
             min-height: 100vh; /* Mengatur tinggi sidebar */
+            min-width: 200px;
             /* background-color: #0602ff; Warna latar belakang sidebar */
             color: white; /* Warna teks */
         }
@@ -22,10 +23,11 @@
 <body>
 
     <div class="sidebar p-4 bg-primary">
+        @if (Auth::user()->role == 'admin')
         <h3 class="text-center">Indomart <sup>11</sup></h3>
         <ul class="nav flex-column">
             <li class="nav-item pt-2">
-                <a class="nav-link" href="/">Dashboard</a>
+                <a class="nav-link" href="/pages/Dashboard">Dashboard</a>
             </li>
             <hr>
             <li class="nav-item pt-2" >
@@ -35,6 +37,14 @@
                 <a class="nav-link" href="{{ route('drink.index')}}">Data Minuman</a>
             </li>
         </ul>
+        @else
+        <h3 class="text-center">Indomart <sup>11</sup></h3>
+        <ul class="nav flex-column">
+            <li class="nav-item pt-2">
+                <a class="nav-link" href="/pages/Dashboard">Dashboard</a>
+            </li>
+        </ul>
+        @endif
     </div>
         @yield('content')
 
