@@ -8,8 +8,12 @@
             {{ Session('success') }}
         </div> 
     @endif
-    <div class="d-flex justify-content-end">
+    <div class="d-flex justify-content-between">
         <a href="{{ route('food.create')}}" class="btn btn-primary">Tambah Data</a>
+        <a href="#" class="btn btn-warning">Download PDF</a>
+    </div>
+    <div class="d-flex justify-content-end py-2">
+        <a href="#" class="btn btn-success">Download Excel</a>
     </div>
     <table class="table table-striped table-bordered mt-4">
         <thead class="thead-dark">
@@ -28,7 +32,7 @@
                 <td>{{ $key+1 }}</td>
                 <td>{{ $food->name }}</td>
                 <td>{{ $food->description }}</td>
-                <td>{{ $food->price }}</td>
+                <td>Rp. {{ number_format($food->price, 2, ",", ".") }}</td>
                 <td>{{ $food->stock }}</td>
                 <td class="text-center">
                     <a href="{{route('food.edit', $food->id)}}" class="btn btn-warning">Edit</a>

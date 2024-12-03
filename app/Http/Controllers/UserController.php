@@ -98,4 +98,8 @@ class UserController extends Controller
             return redirect()->back()->with('failed', 'Gagal Login!!');
         }
     }
+    public function logout(){
+        Auth::logout();
+        return redirect()->route('show.login')->with('success', 'Berhasil Logout!');
+    }
 }
